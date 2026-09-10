@@ -1,0 +1,55 @@
+
+// ── Couleurs ──────────────────────────────────────────
+// Ratios mesurés au vérificateur WebAIM
+$c-fond:             #FDFDFC;
+$c-surface:          #F2F1EE;
+$c-texte:            #1A2332;  // 15,5:1 sur fond — AAA
+$c-texte-secondaire: #5A6472;  // 5,89:1 sur fond, 5,31:1 sur surface — AA
+$c-accent:           #8A6508;  // >5:1 dans les deux sens — AA
+$c-accent-clair:     #B8860B;  // 3,19:1 — décoratif uniquement, jamais en texte
+$c-bordure:          #DEDCD7;
+$c-focus:            #1A2332;
+
+// ── Typographie ───────────────────────────────────────
+$police-titre: 'Outfit', system-ui, sans-serif;
+$police-texte: 'Inter', system-ui, sans-serif;
+
+$t-xs:   0.8125rem;  // 13px — mentions, légendes
+$t-sm:   0.9375rem;  // 15px — texte secondaire
+$t-base: 1.0625rem;  // 17px — corps
+$t-lg:   1.25rem;    // 20px — chapô
+$t-xl:   1.75rem;    // 28px — h3
+$t-2xl:  2.25rem;    // 36px — h2
+$t-3xl:  3rem;       // 48px — h1
+
+$graisse-normale: 400;
+$graisse-moyenne: 500;
+$graisse-forte:   700;
+
+$interligne-serre: 1.2;   // titres
+$interligne-large: 1.65;  // corps
+
+// ── Espacement (base 4px) ─────────────────────────────
+$e-1:  0.25rem;
+$e-2:  0.5rem;
+$e-3:  0.75rem;
+$e-4:  1rem;
+$e-6:  1.5rem;
+$e-8:  2rem;
+$e-12: 3rem;
+$e-16: 4rem;
+$e-24: 6rem;
+
+// ── Structure ─────────────────────────────────────────
+$largeur-max:      1120px;
+$largeur-lecture:  68ch;
+$rayon:            8px;
+$rayon-sm:         4px;
+$ombre-carte:      0 1px 3px rgba(26, 35, 50, 0.08);
+$ombre-carte-survol:0 6px 20px rgba(26, 35, 50, 0.12);
+$transition:       180ms ease;
+
+// ── Points de rupture ─────────────────────────────────
+$bp-mobile:  480px;
+$bp-tablette:768px;
+$bp-desktop: 1024px;

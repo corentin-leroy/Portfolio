@@ -1,0 +1,29 @@
+// src/styles/_mixins.scss
+@use 'variables' as v;
+
+@mixin jusqua($taille) {
+  @media (max-width: #{$taille}) { @content; }
+}
+
+@mixin apartir($taille) {
+  @media (min-width: #{$taille + 1px}) { @content; }
+}
+
+@mixin focus-visible {
+  &:focus-visible {
+    outline: 2px solid v.$c-focus;
+    outline-offset: 3px;
+    border-radius: v.$rayon-sm;
+  }
+}
+
+@mixin conteneur {
+  width: 100%;
+  max-width: v.$largeur-max;
+  margin-inline: auto;
+  padding-inline: v.$e-4;
+
+  @include apartir(v.$bp-tablette) {
+    padding-inline: v.$e-8;
+  }
+}

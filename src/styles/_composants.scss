@@ -1,0 +1,146 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+// ── Lien dans le texte courant ────────────────────────
+.lien {
+  color: v.$c-accent;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-thickness v.$transition;
+  @include m.focus-visible;
+
+  &:hover {
+    text-decoration-thickness: 2px;
+  }
+}
+
+// ── Boutons ───────────────────────────────────────────
+.bouton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: v.$e-2;
+  padding: v.$e-3 v.$e-6;
+  min-height: 44px;
+  border: 2px solid transparent;
+  border-radius: v.$rayon;
+  font-family: v.$police-texte;
+  font-size: v.$t-base;
+  font-weight: v.$graisse-moyenne;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color v.$transition, border-color v.$transition;
+  @include m.focus-visible;
+
+  &--plein {
+    background-color: v.$c-accent;
+    color: v.$c-fond;
+
+    &:hover {
+      background-color: #6E5106
+    }
+  }
+
+  &--contour {
+    background-color: transparent;
+    border-color: v.$c-texte;
+    color: v.$c-texte;
+
+    &:hover {
+      background-color: v.$c-surface;
+    }
+  }
+}
+
+// ── Carte projet ──────────────────────────────────────
+.carte {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: v.$e-3;
+  padding: v.$e-6;
+  background-color: v.$c-surface;
+  border: 1px solid v.$c-bordure;
+  border-radius: v.$rayon;
+  box-shadow: v.$ombre-carte;
+  transition: box-shadow v.$transition, transform v.$transition;
+
+  &:hover {
+    box-shadow: v.$ombre-carte-survol;
+    transform: translateY(-2px);
+  }
+
+  // Le focus vient du lien interne, relayé sur la carte
+  &:focus-within {
+    outline: 2px solid v.$c-focus;
+    outline-offset: 3px;
+  }
+
+  &__titre {
+    font-family: v.$police-titre;
+    font-size: v.$t-xl;
+    font-weight: v.$graisse-forte;
+    line-height: v.$interligne-serre;
+    color: v.$c-texte;
+    margin: 0;
+  }
+
+  // Le lien du titre s'étend sur toute la carte
+  &__lien {
+    color: inherit;
+    text-decoration: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: v.$rayon;
+    }
+
+    &:focus-visible {
+      outline: none; // relayé par .carte:focus-within
+    }
+  }
+
+  &__resume {
+    font-size: v.$t-sm;
+    line-height: v.$interligne-large;
+    color: v.$c-texte-secondaire;
+    margin: 0;
+  }
+
+  &__etiquettes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: v.$e-2;
+    margin-top: auto;
+    padding-top: v.$e-3;
+    list-style: none;
+    padding-inline-start: 0;
+  }
+}
+
+// ── Étiquette de technologie ──────────────────────────
+.etiquette {
+  display: inline-block;
+  padding: v.$e-1 v.$e-3;
+  background-color: v.$c-fond;
+  border: 1px solid v.$c-bordure;
+  border-radius: v.$rayon-sm;
+  font-size: v.$t-xs;
+  font-weight: v.$graisse-moyenne;
+  color: v.$c-texte-secondaire;
+  white-space: nowrap;
+}
+
+// ── Respect de la préférence système ──────────────────
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
