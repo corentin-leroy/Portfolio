@@ -5,8 +5,8 @@ export const projets = [
     resume:
       "Application web de suivi de candidatures, avec une extension Chrome qui capture une offre en un clic depuis n'importe quel site d'emploi.",
     stack: ['React', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'Chrome MV3', 'Railway'],
-    urlDemo: '',
-    urlRepo: '',
+    urlDemo: 'https://cockpit-front-production.up.railway.app/',
+    urlRepo: 'https://github.com/corentin-leroy/Cockpit',
     contexte:
       "Pendant ma recherche d'alternance, je suivais mes candidatures dans un tableur qui devenait vite illisible et que je ne pouvais pas mettre à jour depuis une offre ouverte dans le navigateur.",
     objectifs:
@@ -49,8 +49,8 @@ export const projets = [
     resume:
       "Front-end complet d'une plateforme de location entre particuliers, développé en React à partir de maquettes Figma.",
     stack: ['React', 'React Router', 'Sass', 'Vite'],
-    urlDemo: '',
-    urlRepo: '',
+    urlDemo: 'https://corentin-leroy.github.io/Kasa/',
+    urlRepo: 'https://github.com/corentin-leroy/Kasa',
     contexte:
       "Kasa est une plateforme de location d'appartements entre particuliers dont l'agence refondait le site ; les maquettes Figma m'étaient fournies et j'avais à développer l'intégralité du front en React.",
     objectifs:

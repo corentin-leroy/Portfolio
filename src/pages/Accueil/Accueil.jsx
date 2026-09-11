@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
+import { projets } from '../../data/projets'
 
 function Accueil() {
   return (
@@ -14,6 +16,26 @@ function Accueil() {
 
       <section id="projets" className="section conteneur">
         <h2>Projets</h2>
+
+        <ul className="grille-projets">
+          {projets.map((projet) => (
+            <li key={projet.slug}>
+              <article className="carte">
+                <h3 className="carte__titre">
+                  <Link to={`/projets/${projet.slug}`} className="carte__lien">
+                    {projet.titre}
+                  </Link>
+                </h3>
+                <p className="carte__resume">{projet.resume}</p>
+                <ul className="carte__etiquettes">
+                  {projet.stack.map((techno) => (
+                    <li key={techno} className="etiquette">{techno}</li>
+                  ))}
+                </ul>
+              </article>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section className="section conteneur">

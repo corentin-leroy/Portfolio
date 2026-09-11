@@ -39,7 +39,7 @@
     color: v.$c-fond;
 
     &:hover {
-      background-color: #6E5106
+      background-color: #6E5106;
     }
   }
 
@@ -72,7 +72,6 @@
     transform: translateY(-2px);
   }
 
-  // Le focus vient du lien interne, relayé sur la carte
   &:focus-within {
     outline: 2px solid v.$c-focus;
     outline-offset: 3px;
@@ -87,7 +86,6 @@
     margin: 0;
   }
 
-  // Le lien du titre s'étend sur toute la carte
   &__lien {
     color: inherit;
     text-decoration: none;
@@ -119,6 +117,24 @@
     padding-top: v.$e-3;
     list-style: none;
     padding-inline-start: 0;
+  }
+}
+
+// ── Grille des cartes projet ──────────────────────────
+.grille-projets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: v.$e-6;
+  margin-top: v.$e-8;
+  list-style: none;
+  padding-inline-start: 0;
+
+  > li {
+    display: flex;
+  }
+
+  .carte {
+    width: 100%;
   }
 }
 
