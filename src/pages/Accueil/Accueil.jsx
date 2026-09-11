@@ -6,12 +6,22 @@ function Accueil() {
   return (
     <>
       <Helmet>
-        <title>Corentin Leroy — Développeur web full stack — Grenoble</title>
+        <title>Corentin Leroy - Développeur web full stack - Grenoble</title>
         <meta name="description" content="À rédiger." />
       </Helmet>
 
-      <section className="section conteneur">
-        <h1>Corentin Leroy</h1>
+      <section className="section conteneur hero">
+        <h1 className="hero__titre">Corentin Leroy</h1>
+        <p className="hero__role">Développeur web full stack — Grenoble</p>
+        <p className="hero__accroche lecture">
+          Je construis des applications web complètes, du schéma de base de données
+          à l’interface. Je code, je teste, je déploie, et je documente ce que je
+          fais, y compris ce qui ne marche pas encore.
+        </p>
+        <p className="hero__actions">
+          <a href="#projets" className="bouton bouton--plein">Voir mes projets</a>
+          <Link to="/a-propos" className="bouton bouton--contour">En savoir plus</Link>
+        </p>
       </section>
 
       <section id="projets" className="section conteneur">

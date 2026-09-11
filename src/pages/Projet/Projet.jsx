@@ -42,13 +42,13 @@ function Projet() {
         {projet.urlDemo && (
           <a href={projet.urlDemo} className="bouton bouton--plein"
              target="_blank" rel="noopener noreferrer">
-            Voir la démo
+            Voir la démo <span className="sr-only">(nouvel onglet)</span>
           </a>
         )}
         {projet.urlRepo && (
           <a href={projet.urlRepo} className="bouton bouton--contour"
              target="_blank" rel="noopener noreferrer">
-            Voir le code
+            Voir le code <span className="sr-only">(nouvel onglet)</span>
           </a>
         )}
       </p>

@@ -1,0 +1,76 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.entete {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: rgba(253, 253, 252, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid v.$c-bordure;
+
+  &__interieur {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: v.$e-6;
+    min-height: 64px;
+    padding-block: v.$e-3;
+  }
+
+  &__marque {
+    font-family: v.$police-titre;
+    font-size: v.$t-lg;
+    font-weight: v.$graisse-forte;
+    color: v.$c-texte;
+    text-decoration: none;
+    white-space: nowrap;
+    @include m.focus-visible;
+  }
+
+  &__liens {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: v.$e-2;
+    list-style: none;
+    padding-inline-start: 0;
+    margin: 0;
+
+    a {
+      display: inline-block;
+      padding: v.$e-2 v.$e-3;
+      border-radius: v.$rayon-sm;
+      font-size: v.$t-sm;
+      font-weight: v.$graisse-moyenne;
+      color: v.$c-texte-secondaire;
+      text-decoration: none;
+      transition: color v.$transition, background-color v.$transition;
+      @include m.focus-visible;
+
+      &:hover {
+        color: v.$c-texte;
+        background-color: v.$c-surface;
+      }
+
+      &.active {
+        color: v.$c-texte;
+        font-weight: v.$graisse-forte;
+      }
+    }
+  }
+}
+
+@include m.jusqua(v.$bp-mobile) {
+  .entete {
+    &__interieur {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: v.$e-3;
+    }
+
+    &__liens a {
+      padding-inline: v.$e-2;
+    }
+  }
+}

@@ -54,6 +54,34 @@
   }
 }
 
+// ── Hero ──────────────────────────────────────────────
+.hero {
+  padding-block: v.$e-24 v.$e-16;
+
+  &__titre {
+    margin-bottom: v.$e-2;
+  }
+
+  &__role {
+    font-family: v.$police-titre;
+    font-size: v.$t-lg;
+    font-weight: v.$graisse-moyenne;
+    color: v.$c-texte-secondaire;
+    margin-bottom: v.$e-8;
+  }
+
+  &__accroche {
+    font-size: v.$t-lg;
+    margin-bottom: v.$e-8;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: v.$e-4;
+  }
+}
+
 // ── Carte projet ──────────────────────────────────────
 .carte {
   position: relative;
@@ -160,3 +188,4 @@
     transition-duration: 0.01ms !important;
   }
 }
+

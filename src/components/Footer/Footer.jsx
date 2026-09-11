@@ -9,26 +9,24 @@ function Footer() {
       <div className="conteneur pied__interieur">
         <p className="pied__mention">© {annee} Corentin Leroy</p>
 
-        <nav aria-label="Liens externes">
+        <nav aria-label="Liens de bas de page">
           <ul className="pied__liens">
+            <li><Link to="/a-propos">À propos</Link></li>
+            <li><a href="/#contact">Contact</a></li>
             <li>
-              <a href="https://github.com/corentin-leroy" className="lien"
+              <a href="https://github.com/corentin-leroy"
                  target="_blank" rel="noopener noreferrer">
-                GitHub
+                GitHub <span className="sr-only">(nouvel onglet)</span>
               </a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/in/corentin-leroy-b19152400/" className="lien"
+              <a href="https://www.linkedin.com/in/corentin-leroy-b19152400/"
                  target="_blank" rel="noopener noreferrer">
-                LinkedIn
+                LinkedIn <span className="sr-only">(nouvel onglet)</span>
               </a>
             </li>
           </ul>
         </nav>
-
-        <p className="pied__liens-internes">
-          <Link to="/a-propos">À propos</Link>
-        </p>
       </div>
     </footer>
   )

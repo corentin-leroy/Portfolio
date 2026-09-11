@@ -1,0 +1,46 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.pied {
+  margin-top: v.$e-24;
+  padding-block: v.$e-12;
+  background-color: v.$c-surface;
+  border-top: 1px solid v.$c-bordure;
+
+  &__interieur {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: v.$e-6;
+  }
+
+  &__mention {
+    font-size: v.$t-sm;
+    color: v.$c-texte-secondaire;
+    margin: 0;
+  }
+
+  &__liens {
+    display: flex;
+    flex-wrap: wrap;
+    gap: v.$e-6;
+    list-style: none;
+    padding-inline-start: 0;
+    margin: 0;
+    font-size: v.$t-sm;
+
+    a {
+      color: v.$c-texte-secondaire;
+      text-decoration: none;
+      transition: color v.$transition;
+      @include m.focus-visible;
+
+      &:hover {
+        color: v.$c-texte;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+    }
+  }
+}
