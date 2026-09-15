@@ -90,7 +90,7 @@ function Contact() {
       {/* Piège à robots : masqué aux humains, rempli par les bots */}
       <input
         type="checkbox" name="botcheck" className="sr-only"
-        tabIndex="-1" autoComplete="off"
+        tabIndex="-1" autoComplete="off" aria-hidden="true"
       />
 
       <p>
