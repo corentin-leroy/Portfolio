@@ -1,7 +1,7 @@
 export const projets = [
   {
     slug: 'cockpit',
-    titre: 'Alternance Cockpit',
+    titre: 'Cockpit',
     resume:
       "Application web de suivi de candidatures, avec une extension Chrome qui capture une offre en un clic depuis n'importe quel site d'emploi.",
     stack: ['React', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'Chrome MV3', 'Railway'],

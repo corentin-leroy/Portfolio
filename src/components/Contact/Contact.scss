@@ -1,0 +1,49 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.contact {
+  max-width: 560px;
+  margin-top: v.$e-8;
+
+  &__champ {
+    display: flex;
+    flex-direction: column;
+    gap: v.$e-2;
+    margin-bottom: v.$e-6;
+
+    label {
+      font-weight: v.$graisse-moyenne;
+      font-size: v.$t-sm;
+    }
+
+    input,
+    textarea {
+      padding: v.$e-3;
+      background-color: v.$c-fond;
+      border: 1px solid v.$c-bordure;
+      border-radius: v.$rayon-sm;
+      font-size: v.$t-base;
+      @include m.focus-visible;
+
+      &[aria-invalid='true'] {
+        border-color: #A3282C;
+        border-width: 2px;
+      }
+    }
+
+    textarea {
+      resize: vertical;
+    }
+  }
+
+  &__erreur {
+    color: #A3282C;
+    font-size: v.$t-sm;
+    font-weight: v.$graisse-moyenne;
+  }
+
+  &__statut {
+    margin-top: v.$e-4;
+    font-weight: v.$graisse-moyenne;
+  }
+}

@@ -179,6 +179,43 @@
   white-space: nowrap;
 }
 
+// ── Compétences ───────────────────────────────────────
+.competences {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: v.$e-8;
+  margin-top: v.$e-8;
+
+  &__groupe h3 {
+    font-size: v.$t-lg;
+    margin-bottom: v.$e-4;
+  }
+
+  &__liste {
+    display: flex;
+    flex-wrap: wrap;
+    gap: v.$e-2;
+    list-style: none;
+    padding-inline-start: 0;
+    margin: 0 0 v.$e-4;
+  }
+
+  &__preuve {
+    font-size: v.$t-sm;
+    color: v.$c-texte-secondaire;
+    margin: 0;
+  }
+}
+
+// ── Prose ─────────────────────────────────────────────
+.prose {
+  margin-top: v.$e-8;
+
+  p {
+    margin-bottom: v.$e-6;
+  }
+}
+
 // ── Respect de la préférence système ──────────────────
 @media (prefers-reduced-motion: reduce) {
   *,
