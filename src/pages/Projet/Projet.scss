@@ -1,0 +1,55 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.projet {
+  &__retour {
+    font-size: v.$t-sm;
+    margin-bottom: v.$e-6;
+  }
+
+  &__resume {
+    font-size: v.$t-lg;
+    color: v.$c-texte-secondaire;
+    margin: v.$e-4 0 v.$e-6;
+  }
+
+  &__etiquettes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: v.$e-2;
+    list-style: none;
+    padding-inline-start: 0;
+    margin: 0 0 v.$e-8;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: v.$e-4;
+    margin-bottom: v.$e-16;
+  }
+
+  &__rubrique {
+    margin-bottom: v.$e-12;
+
+    h2 {
+      font-size: v.$t-xl;
+      margin-bottom: v.$e-3;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+  
+  &__visuel {
+    margin: 0 0 v.$e-16;
+
+    img {
+      width: 100%;
+      height: auto;
+      border: 1px solid v.$c-bordure;
+      border-radius: v.$rayon;
+    }
+  }
+}

@@ -7,7 +7,7 @@ function Accueil() {
   return (
     <>
       <Helmet>
-        <title>Corentin Leroy — Développeur web full stack — Grenoble</title>
+        <title>Corentin Leroy - Développeur web full stack — Grenoble</title>
         <meta
           name="description"
           content="Développeur web full stack à Grenoble. Applications complètes du back à l’interface, testées et documentées. Python, FastAPI, React, accessibilité."
@@ -16,11 +16,11 @@ function Accueil() {
 
       <section className="section conteneur hero">
         <h1 className="hero__titre">Corentin Leroy</h1>
-        <p className="hero__role">Développeur web full stack — Grenoble</p>
+        <p className="hero__role">Développeur web full stack - Grenoble</p>
         <p className="hero__accroche lecture">
           Je construis des applications web complètes, du schéma de base de
           données à l’interface. Je code, je teste, je déploie, et je documente
-          ce que je fais — y compris ce qui ne marche pas encore.
+          ce que je fais, y compris ce qui ne marche pas encore.
         </p>
         <p className="hero__actions">
           <a href="#projets" className="bouton bouton--plein">Voir mes projets</a>
@@ -69,7 +69,7 @@ function Accueil() {
             </ul>
             <p className="competences__preuve">
               Mis en œuvre sur{' '}
-              <Link to="/projets/cockpit" className="lien">Alternance Cockpit</Link>.
+              <Link to="/projets/cockpit" className="lien">Cockpit</Link>.
             </p>
           </article>
 
@@ -101,7 +101,7 @@ function Accueil() {
             <p className="competences__preuve">
               Mis en œuvre sur{' '}
               <Link to="/projets/nina-carducci" className="lien">Nina Carducci</Link>{' '}
-              et <Link to="/projets/cockpit" className="lien">Alternance Cockpit</Link>.
+              et <Link to="/projets/cockpit" className="lien">Cockpit</Link>.
             </p>
           </article>
         </div>

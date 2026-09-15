@@ -3,11 +3,18 @@ export const projets = [
     slug: 'cockpit',
     titre: 'Cockpit',
     resume:
-      "Application web de suivi de candidatures, avec une extension Chrome qui capture une offre en un clic depuis n'importe quel site d'emploi.",
+      "Application web de suivi de candidatures, avec une extension Chrome publiée sur le Chrome Web Store qui capture une offre en un clic depuis n'importe quel site d'emploi.",
     stack: ['React', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'Chrome MV3', 'Railway'],
     urlDemo: 'https://cockpit-front-production.up.railway.app/',
     urlRepo: 'https://github.com/corentin-leroy/Cockpit',
-    contexte:
+    urlExtension:
+      'https://chromewebstore.google.com/detail/cockpit/cabhkfjohddpeigkoijhlidndfkgbpno',
+    image: '/images/cockpit.webp',
+    imageAlt:
+      'Tableau kanban de Cockpit : colonnes Repérée, Postulée, Relancée, Entretien et Refusée, chacune contenant des cartes de candidature avec intitulé du poste, entreprise et lieu.',
+    imageLargeur: 1200,
+    imageHauteur: 606,
+      contexte:
       "Pendant ma recherche d'alternance, je suivais mes candidatures dans un tableur qui devenait vite illisible et que je ne pouvais pas mettre à jour depuis une offre ouverte dans le navigateur.",
     objectifs:
       "Construire un SaaS complet, de l'authentification au déploiement, capable de capturer une offre en un clic depuis n'importe quel site d'emploi et de la classer dans un kanban.",
@@ -16,7 +23,7 @@ export const projets = [
     competences:
       "J'ai traité des problèmes que la formation n'aborde pas : la chaîne de propriété des ressources entre utilisateurs, l'expiration des jetons de session, la suppression de compte en cascade au niveau du schéma, et une décision de sécurité que je peux défendre — refuser une URL d'API configurable dans l'extension, parce qu'un champ modifiable devient un canal d'exfiltration du jeton d'authentification.",
     resultats:
-      "Application en production avec 36 tests pytest couvrant l'authentification et les règles métier, quatre scénarios d'attaque validés manuellement (énumération de comptes, rejeu de jeton, confusion entre réinitialisation et vérification, contournement des plafonds), design system en tokens CSS conforme WCAG AA et lisible en vision daltonienne.",
+      "Application en production avec 36 tests pytest couvrant l'authentification et les règles métier, quatre scénarios d'attaque validés manuellement (énumération de comptes, rejeu de jeton, confusion entre réinitialisation et vérification, contournement des plafonds), design system en tokens CSS conforme WCAG AA et lisible en vision daltonienne. L'extension est publiée sur le Chrome Web Store.",
     perspectives:
       "Publication de l'extension sur le Chrome Web Store, et suppression de la duplication des tokens CSS dans la popup, aujourd'hui synchronisée à la main.",
   },
@@ -30,6 +37,11 @@ export const projets = [
       'https://corentin-leroy.github.io/Amelioration-du-site-web-de-Nina-Carducci',
     urlRepo:
       'https://github.com/corentin-leroy/Amelioration-du-site-web-de-Nina-Carducci',
+    image: '/images/nina-carducci.webp',
+    imageAlt:
+      'Comparatif des scores Lighthouse avant et après optimisation : performance de 65 à 96, accessibilité de 68 à 100, bonnes pratiques stables à 100, SEO de 70 à 100. Poids des images réduit de 30,9 Mo à 848,9 Ko. WAVE sans erreur. Trois bugs fonctionnels corrigés.',
+    imageLargeur: 1200,
+    imageHauteur: 502,
     contexte:
       "Nina Carducci est une photographe professionnelle bordelaise dont le site en ligne était lent, mal référencé et partiellement inaccessible ; la mission consistait à l'optimiser sans en refaire le design.",
     objectifs:
@@ -51,6 +63,11 @@ export const projets = [
     stack: ['React', 'React Router', 'Sass', 'Vite'],
     urlDemo: 'https://corentin-leroy.github.io/Kasa/',
     urlRepo: 'https://github.com/corentin-leroy/Kasa',
+    image: '/images/kasa.webp',
+    imageAlt:
+      'Page de logement de Kasa : carrousel affichant la première de quatre photos, titre du studio, hôte et notation, et deux sections dépliables ouvertes sur la description et les équipements.',
+    imageLargeur: 1200,
+    imageHauteur: 839,
     contexte:
       "Kasa est une plateforme de location d'appartements entre particuliers dont l'agence refondait le site ; les maquettes Figma m'étaient fournies et j'avais à développer l'intégralité du front en React.",
     objectifs:

@@ -214,6 +214,26 @@
   p {
     margin-bottom: v.$e-6;
   }
+
+  h2 {
+    font-size: v.$t-xl;
+    margin: v.$e-12 0 v.$e-4;
+  }
+
+  &__chapo {
+    font-size: v.$t-lg;
+    color: v.$c-texte-secondaire;
+  }
+
+  &__exergue {
+    margin: v.$e-12 0;
+    padding-left: v.$e-6;
+    border-left: 3px solid v.$c-accent;
+    font-family: v.$police-titre;
+    font-size: v.$t-lg;
+    font-weight: v.$graisse-moyenne;
+    line-height: v.$interligne-serre;
+  }
 }
 
 // ── Respect de la préférence système ──────────────────
