@@ -1,16 +1,78 @@
-# React + Vite
+# Portfolio - Corentin Leroy
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Site portfolio personnel présentant trois projets de développement web, réalisé
+dans le cadre du parcours Développeur Web d'OpenClassrooms.
 
-Currently, two official plugins are available:
+**En ligne :** https://corentin-leroy.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Stack
 
-## React Compiler
+React 19, Vite, React Router, Sass. Déploiement sur Vercel.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Installation
 
-## Expanding the ESLint configuration
+```bash
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Le site est servi sur `http://localhost:5173`.
+
+Autres commandes : `npm run build` pour la production, `npm run lint` pour
+l'analyse statique.
+
+## Structure
+
+```
+public/images/     Visuels des projets et image de partage
+src/components/    Composants réutilisables (en-tête, pied de page, formulaire)
+src/pages/         Une page par route
+src/data/          Contenu des fiches projet
+src/styles/        Variables, mixins, composants, styles globaux
+```
+
+Le contenu des projets est centralisé dans `src/data/projets.js`. Les pages
+projet sont générées à partir d'une route unique avec paramètre, chaque fiche
+suivant les six mêmes rubriques.
+
+## Choix techniques
+
+**React + Vite plutôt qu'un générateur statique.** Astro aurait été plus adapté
+à un site de contenu, notamment pour le rendu des métadonnées côté serveur. J'ai
+retenu React pour tenir le délai avec une stack que je maîtrise, en acceptant
+la limite qui en découle : les balises de partage social sont écrites en dur
+dans `index.html` et ne varient pas par page.
+
+**Métadonnées sans bibliothèque.** React 19 remonte nativement les balises
+`title` et `meta` dans le `head`. `react-helmet-async` s'est révélé inopérant
+avec cette version et a été retiré.
+
+**Palette validée par mesure.** Chaque couple de couleurs a été vérifié au
+contrôleur de contraste WebAIM avant intégration. Les ratios obtenus sont
+documentés en commentaire dans `src/styles/_variables.scss`. La couleur d'accent
+initiale atteignait 3,19:1 et a été assombrie pour franchir le seuil AA.
+
+**Aucune information portée par la couleur seule.** Les liens de contenu sont
+soulignés, les étiquettes de technologie portent du texte, l'état actif de la
+navigation combine couleur et graisse, et le focus clavier est matérialisé par
+un contour visible sur tous les éléments interactifs.
+
+**Polices auto-hébergées.** Inter et Outfit sont servies depuis le domaine du
+site via `@fontsource`, sans requête vers un service tiers.
+
+**Formulaire de contact sans back-end.** L'envoi passe par Web3Forms. Les
+champs sont associés à leurs libellés, la validation est gérée côté client avec
+des messages liés par `aria-describedby`, et un champ piège filtre les envois
+automatisés.
+
+## Résultats
+
+Lighthouse : 100 en performance, accessibilité, bonnes pratiques et SEO sur la
+page d'accueil en production.
+
+WAVE : aucune erreur.
+
+## Auteur
+
+Corentin Leroy | [GitHub](https://github.com/corentin-leroy) ·
+[LinkedIn](https://www.linkedin.com/in/corentin-leroy-b19152400/)
