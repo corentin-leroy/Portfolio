@@ -64,9 +64,11 @@
 @include m.jusqua(v.$bp-mobile) {
   .entete {
     &__interieur {
-      flex-direction: column;
-      align-items: flex-start;
       gap: v.$e-3;
+    }
+
+    &__marque {
+      font-size: v.$t-base;
     }
 
     &__liens a {
