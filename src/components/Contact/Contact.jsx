@@ -88,8 +88,11 @@ function Contact() {
       </p>
 
       {/* Piège à robots : masqué aux humains, rempli par les bots */}
+      <label htmlFor="botcheck" className="sr-only" aria-hidden="true">
+        Ne pas remplir
+      </label>
       <input
-        type="checkbox" name="botcheck" className="sr-only"
+        id="botcheck" type="checkbox" name="botcheck" className="sr-only"
         tabIndex="-1" autoComplete="off" aria-hidden="true"
       />
 
