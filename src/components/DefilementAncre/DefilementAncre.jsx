@@ -10,7 +10,8 @@ function DefilementAncre() {
       return
     }
     const cible = document.querySelector(hash)
-    if (cible) cible.scrollIntoView({ behavior: 'smooth' })
+    const reduire = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (cible) cible.scrollIntoView({ behavior: reduire ? 'auto' : 'smooth' })
   }, [hash, pathname, key])
 
   return null

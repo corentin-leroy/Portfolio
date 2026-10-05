@@ -1,33 +1,43 @@
 
 // ── Couleurs ──────────────────────────────────────────
-// Ratios mesurés au vérificateur WebAIM
-$c-fond:             #FDFDFC;
-$c-surface:          #F2F1EE;
-$c-texte:            #1A2332;  // 15,5:1 sur fond — AAA
-$c-texte-secondaire: #5A6472;  // 5,89:1 sur fond, 5,31:1 sur surface — AA
-$c-accent:           #8A6508;  // >5:1 dans les deux sens — AA
-$c-accent-clair:     #B8860B;  // 3,19:1 — décoratif uniquement, jamais en texte
-$c-bordure:          #DEDCD7;
-$c-focus:            #1A2332;
-$c-erreur:           #A3282C;
+// Les valeurs (clair et sombre) sont définies en propriétés CSS dans
+// main.scss. Les variables Sass pointent dessus pour que tous les
+// composants suivent le thème sans duplication.
+$c-fond:             var(--c-fond);
+$c-surface:          var(--c-surface);
+$c-texte:            var(--c-texte);
+$c-texte-secondaire: var(--c-texte-secondaire);
+$c-accent:           var(--c-accent);
+$c-accent-survol:    var(--c-accent-survol);
+$c-bordure:          var(--c-bordure);      // séparateurs décoratifs
+$c-bordure-ui:       var(--c-bordure-ui);   // contours d'éléments d'interface (3:1)
+$c-focus:            var(--c-focus);
+$c-erreur:           var(--c-erreur);
 
 // ── Typographie ───────────────────────────────────────
 $police-titre: 'Outfit', system-ui, sans-serif;
 $police-texte: 'Inter', system-ui, sans-serif;
 
-$t-xs:   0.8125rem;  // 13px — mentions, légendes
+// Échelle : 13 / 15 / 17 / 20 / 28 / 44 / 88 px
+$t-xs:   0.8125rem;  // 13px — mentions, étiquettes
 $t-sm:   0.9375rem;  // 15px — texte secondaire
 $t-base: 1.0625rem;  // 17px — corps
 $t-lg:   1.25rem;    // 20px — chapô
 $t-xl:   1.75rem;    // 28px — h3
-$t-2xl:  2.25rem;    // 36px — h2
-$t-3xl:  3rem;       // 48px — h1
+$t-2xl:  2.75rem;    // 44px — h2
+$t-3xl:  5.5rem;     // 88px — titre d'accueil
+
+// Titres fluides (360px → 1440px)
+$t-h1:      clamp(2.25rem, 1.6rem + 2.6vw, 3.5rem);
+$t-h2:      clamp(1.75rem, 1.3rem + 1.9vw, $t-2xl);
+$t-display: clamp(3.25rem, 1.4rem + 8.2vw, $t-3xl);
 
 $graisse-normale: 400;
 $graisse-moyenne: 500;
 $graisse-forte:   700;
 
 $interligne-serre: 1.2;   // titres
+$interligne-titre: 1;     // titre d'accueil
 $interligne-large: 1.65;  // corps
 
 // ── Espacement (base 4px) ─────────────────────────────
@@ -40,15 +50,15 @@ $e-8:  2rem;
 $e-12: 3rem;
 $e-16: 4rem;
 $e-24: 6rem;
+$e-32: 8rem;
 
 // ── Structure ─────────────────────────────────────────
 $largeur-max:      1120px;
 $largeur-lecture:  68ch;
-$rayon:            8px;
+$rayon:            4px;   // rayon unique du site : net et sobre
 $rayon-sm:         4px;
-$ombre-carte:      0 1px 3px rgba(26, 35, 50, 0.08);
-$ombre-carte-survol:0 6px 20px rgba(26, 35, 50, 0.12);
 $transition:       180ms ease;
+$ease-sortie:      cubic-bezier(0.16, 1, 0.3, 1);
 
 // ── Points de rupture ─────────────────────────────────
 $bp-mobile:  480px;

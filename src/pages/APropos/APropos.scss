@@ -1,0 +1,126 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+// Grille éditoriale : intertitres dans une colonne étroite à gauche,
+// texte dans la colonne de lecture à droite (desktop). Une colonne sur mobile.
+.apropos {
+  --apropos-colonnes: minmax(0, 3fr) minmax(0, 8fr);
+
+  &__entete,
+  &__partie,
+  &__citation {
+    display: grid;
+    gap: v.$e-4 v.$e-8;
+
+    @include m.apartir(v.$bp-desktop) {
+      grid-template-columns: var(--apropos-colonnes);
+    }
+  }
+
+  // ── En-tête : titre à gauche, chapô en grand à droite ──
+  &__entete {
+    align-items: start;
+    padding-bottom: v.$e-12;
+
+    @include m.apartir(v.$bp-tablette) {
+      padding-bottom: v.$e-16;
+    }
+  }
+
+  &__chapo {
+    font-family: v.$police-titre;
+    font-size: clamp(1.375rem, 1.05rem + 1.4vw, 2rem);
+    font-weight: v.$graisse-moyenne;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    max-width: 40ch;
+
+    @include m.apartir(v.$bp-desktop) {
+      padding-top: v.$e-2;
+    }
+  }
+
+  // ── Parties ──
+  &__partie {
+    padding-block: v.$e-12;
+    border-top: 1px solid v.$c-bordure;
+
+    @include m.apartir(v.$bp-tablette) {
+      padding-block: v.$e-16;
+    }
+  }
+
+  // Pas de filet juste sous la bande : son bord sert déjà de séparation
+  &__citation + &__partie {
+    border-top: 0;
+  }
+
+  &__intertitre {
+    font-size: v.$t-xl;
+
+    // L'intertitre reste visible pendant la lecture de sa partie
+    @include m.apartir(v.$bp-desktop) {
+      position: sticky;
+      top: calc(68px + #{v.$e-6});
+      align-self: start;
+    }
+  }
+
+  &__texte {
+    display: grid;
+    gap: v.$e-8;
+    max-width: v.$largeur-lecture;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  // ── Citation : bande cobalt sur toute la largeur (classe .bande) ──
+  &__citation {
+    margin-block: 0;
+
+    // .bande (chargée après) impose un autre écart : on garde celui de la
+    // grille de la page pour que la citation s'aligne sur la colonne de texte
+    &.bande {
+      column-gap: v.$e-8;
+    }
+
+    p {
+      font-family: v.$police-titre;
+      font-size: clamp(1.875rem, 1.2rem + 2.8vw, 3.25rem);
+      font-weight: v.$graisse-moyenne;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      max-width: 26ch;
+      text-wrap: balance;
+
+      // Alignée sur la colonne de texte
+      @include m.apartir(v.$bp-desktop) {
+        grid-column: 2;
+      }
+    }
+  }
+
+  // ── Aperçu de Cockpit, lien vers la page projet ──
+  &__apercu {
+    display: block;
+    border-radius: v.$rayon;
+    text-decoration: none;
+    @include m.focus-visible;
+
+    .cadre {
+      transition: border-color v.$transition, transform v.$transition;
+    }
+
+    &:hover .cadre {
+      border-color: v.$c-accent;
+    }
+  }
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  .apropos__apercu:hover .cadre {
+    transform: translateY(-3px);
+  }
+}

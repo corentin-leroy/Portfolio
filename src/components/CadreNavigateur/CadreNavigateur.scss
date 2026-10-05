@@ -1,0 +1,36 @@
+@use '../../styles/variables' as v;
+
+.cadre {
+  overflow: hidden;
+  background-color: v.$c-surface;
+  border: 1px solid v.$c-bordure-ui;
+  border-radius: v.$rayon;
+
+  // Barre de fenêtre : trois pastilles, purement décoratives
+  &__barre {
+    display: flex;
+    gap: 6px;
+    padding: 10px 12px;
+    border-bottom: 1px solid v.$c-bordure-ui;
+
+    span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: v.$c-bordure-ui;
+    }
+  }
+
+  &__media {
+    position: relative;
+
+    > img,
+    > video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left top;
+    }
+  }
+}

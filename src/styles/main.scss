@@ -3,6 +3,78 @@
 @use 'mixins' as m;
 @use 'composants';
 
+// ── Thème : clair par défaut, sombre selon le système ─
+// Ratios WCAG mesurés (script de calcul de luminance relative).
+@mixin jetons-clairs {
+  --c-fond:             #F4F5F7;
+  --c-surface:          #E9EBEF;
+  --c-texte:            #12141A;  // 16,9:1 sur fond
+  --c-texte-secondaire: #4A5060;  // 7,4:1 sur fond, 6,8:1 sur surface
+  --c-accent:           #1D3FD6;  // 7,0:1 sur fond, 6,4:1 sur surface
+  --c-accent-survol:    #162FA3;  // 9,8:1 sur fond
+  --c-bordure:          #CDD1D9;  // décoratif uniquement
+  --c-bordure-ui:       #7A8191;  // 3,6:1 sur fond, 3,3:1 sur surface
+  --c-focus:            #12141A;  // 16,9:1 sur fond, 15,4:1 sur surface
+  --c-erreur:           #A3282C;  // 6,6:1 sur fond, 6,1:1 sur surface
+
+  // Bande de chiffres (fond cobalt plein)
+  --c-bande:            #1D3FD6;
+  --c-bande-texte:      #F4F5F7;  // 7,0:1 sur bande
+  --c-bande-secondaire: #D3DAFF;  // 5,6:1 sur bande
+  --c-bande-bordure:    #9DAEFF;  // 3,6:1 sur bande
+}
+
+:root {
+  color-scheme: light dark;
+  @include jetons-clairs;
+}
+
+@mixin jetons-sombres {
+  --c-fond:             #0F1115;
+  --c-surface:          #171A21;
+  --c-texte:            #ECEEF2;  // 16,3:1 sur fond
+  --c-texte-secondaire: #A3A9B6;  // 8,0:1 sur fond, 7,4:1 sur surface
+  --c-accent:           #8EA2FF;  // 7,9:1 sur fond, 7,3:1 sur surface
+  --c-accent-survol:    #B3C0FF;  // 10,7:1 sur fond
+  --c-bordure:          #2A2E38;  // décoratif uniquement
+  --c-bordure-ui:       #5B6272;  // 3,1:1 sur fond
+  --c-focus:            #ECEEF2;  // 16,3:1 sur fond, 15,0:1 sur surface
+  --c-erreur:           #FF9A9A;  // 9,3:1 sur fond
+
+  --c-bande:            #1A2A8C;
+  --c-bande-texte:      #ECEEF2;  // 10,3:1 sur bande
+  --c-bande-secondaire: #BFC9FF;  // 7,4:1 sur bande
+  --c-bande-bordure:    #7E8FE8;  // 4,0:1 sur bande
+}
+
+// Choix système, tant que l'utilisateur n'a pas tranché avec le bouton
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    @include jetons-sombres;
+  }
+}
+
+// Choix explicite posé par le bouton de la barre de navigation
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  @include jetons-sombres;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+// Impression : les navigateurs n'impriment pas les fonds par défaut.
+// On repasse en jetons clairs pour ne jamais imprimer du texte clair sur papier blanc.
+@media print {
+  :root,
+  :root[data-theme],
+  :root:not([data-theme]) {
+    color-scheme: light;
+    @include jetons-clairs;
+  }
+}
+
 // ── Réinitialisation ciblée ───────────────────────────
 *,
 *::before,
@@ -41,8 +113,14 @@ select {
 
 // ── Bases ─────────────────────────────────────────────
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: v.$e-24;
+}
+
+// Défilement doux seulement si l'utilisateur ne demande pas de réduire les animations
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -54,6 +132,7 @@ body {
   line-height: v.$interligne-large;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 h1, h2, h3, h4 {
@@ -63,15 +142,10 @@ h1, h2, h3, h4 {
   text-wrap: balance;
 }
 
-h1 { font-size: v.$t-3xl; }
-h2 { font-size: v.$t-2xl; }
+h1 { font-size: v.$t-h1; }
+h2 { font-size: v.$t-h2; }
 h3 { font-size: v.$t-xl; }
 h4 { font-size: v.$t-lg; }
-
-@include m.jusqua(v.$bp-tablette) {
-  h1 { font-size: v.$t-2xl; }
-  h2 { font-size: v.$t-xl; }
-}
 
 p {
   text-wrap: pretty;
@@ -97,6 +171,13 @@ a {
 
 .lecture {
   max-width: v.$largeur-lecture;
+}
+
+// Les visuels qui débordent du conteneur (hero, Cockpit, bande) sont coupés
+// au bord de la fenêtre. `clip` ne crée pas de conteneur de défilement :
+// l'en-tête collant continue de fonctionner.
+#contenu {
+  overflow-x: clip;
 }
 
 // ── Lien d'évitement ──────────────────────────────────

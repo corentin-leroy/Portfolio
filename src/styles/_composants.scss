@@ -7,10 +7,11 @@
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
-  transition: text-decoration-thickness v.$transition;
+  transition: text-decoration-thickness v.$transition, color v.$transition;
   @include m.focus-visible;
 
   &:hover {
+    color: v.$c-accent-survol;
     text-decoration-thickness: 2px;
   }
 }
@@ -29,17 +30,23 @@
   font-size: v.$t-base;
   font-weight: v.$graisse-moyenne;
   line-height: 1;
+  white-space: nowrap;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color v.$transition, border-color v.$transition;
+  transition: background-color v.$transition, border-color v.$transition,
+    transform v.$transition;
   @include m.focus-visible;
+
+  &:active {
+    transform: translateY(1px);
+  }
 
   &--plein {
     background-color: v.$c-accent;
     color: v.$c-fond;
 
     &:hover {
-      background-color: #6E5106;
+      background-color: v.$c-accent-survol;
     }
   }
 
@@ -54,12 +61,49 @@
   }
 }
 
-// ── Hero ──────────────────────────────────────────────
-.hero {
-  padding-block: v.$e-24 v.$e-16;
+// ── Sections de l'accueil : rythme resserré ───────────
+// Double classe : main.scss déclare .section après ce fichier.
+.section.section--serre {
+  padding-block: v.$e-12;
 
+  @include m.apartir(v.$bp-tablette) {
+    padding-block: v.$e-16;
+  }
+}
+
+.section--filet {
+  border-top: 1px solid v.$c-bordure;
+}
+
+.titre-section {
+  margin-bottom: v.$e-8;
+}
+
+// ── Hero ──────────────────────────────────────────────
+// Texte à gauche, capture de Cockpit inclinée à droite qui déborde
+// jusqu'au bord de la fenêtre (coupée par #contenu, sans défilement).
+.section.hero {
+  display: grid;
+  gap: v.$e-12;
+  padding-block: v.$e-8 v.$e-12;
+
+  @include m.apartir(v.$bp-tablette) {
+    padding-block: v.$e-12 v.$e-16;
+  }
+
+  @include m.apartir(v.$bp-desktop) {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: center;
+    gap: v.$e-8;
+  }
+}
+
+.hero {
   &__titre {
-    margin-bottom: v.$e-2;
+    font-size: v.$t-display;
+    line-height: v.$interligne-titre;
+    letter-spacing: -0.03em;
+    margin-bottom: v.$e-6;
   }
 
   &__role {
@@ -67,72 +111,103 @@
     font-size: v.$t-lg;
     font-weight: v.$graisse-moyenne;
     color: v.$c-texte-secondaire;
-    margin-bottom: v.$e-8;
+    margin-bottom: v.$e-4;
+    text-wrap: balance;
   }
 
   &__accroche {
-    font-size: v.$t-lg;
+    font-size: v.$t-base;
     margin-bottom: v.$e-8;
+
+    @include m.apartir(v.$bp-tablette) {
+      font-size: v.$t-lg;
+    }
   }
 
   &__actions {
     display: flex;
     flex-wrap: wrap;
     gap: v.$e-4;
+
+    // 360px : les deux boutons tiennent côte à côte
+    @include m.jusqua(v.$bp-mobile) {
+      gap: v.$e-3;
+
+      .bouton {
+        padding-inline: v.$e-3;
+      }
+    }
+  }
+
+  &__visuel {
+    width: 118%;
+    perspective: 2000px;
+
+    @include m.apartir(v.$bp-desktop) {
+      width: min(760px, 54vw);
+    }
+
+    .cadre {
+      transform: rotateY(-14deg) rotateX(5deg) rotateZ(-1deg);
+      transform-origin: left center;
+      // Ombre sombre fixe dans les deux thèmes (pas de halo clair en thème sombre)
+      box-shadow: 0 40px 80px -30px rgb(10 12 18 / 0.45);
+    }
   }
 }
 
-// ── Carte projet ──────────────────────────────────────
-.carte {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: v.$e-3;
-  padding: v.$e-6;
-  background-color: v.$c-surface;
-  border: 1px solid v.$c-bordure;
-  border-radius: v.$rayon;
-  box-shadow: v.$ombre-carte;
-  transition: box-shadow v.$transition, transform v.$transition;
+// ── Projets ───────────────────────────────────────────
+.projets-liste {
+  display: grid;
+  gap: v.$e-12;
+  list-style: none;
+  padding-inline-start: 0;
 
-  &:hover {
-    box-shadow: v.$ombre-carte-survol;
-    transform: translateY(-2px);
+  @include m.apartir(v.$bp-tablette) {
+    gap: v.$e-16;
   }
+}
 
-  &:focus-within {
-    outline: 2px solid v.$c-focus;
-    outline-offset: 3px;
+.projet-ligne {
+  position: relative;
+  display: grid;
+  gap: v.$e-6;
+  align-items: center;
+
+  &__texte {
+    display: flex;
+    flex-direction: column;
+    gap: v.$e-4;
+    max-width: 62ch;
   }
 
   &__titre {
-    font-family: v.$police-titre;
     font-size: v.$t-xl;
-    font-weight: v.$graisse-forte;
     line-height: v.$interligne-serre;
-    color: v.$c-texte;
     margin: 0;
   }
 
   &__lien {
-    color: inherit;
+    color: v.$c-texte;
     text-decoration: none;
+    @include m.focus-visible;
 
+    // La zone cliquable couvre tout le projet (texte et visuel)
     &::after {
       content: '';
       position: absolute;
       inset: 0;
-      border-radius: v.$rayon;
     }
 
-    &:focus-visible {
-      outline: none; // relayé par .carte:focus-within
+    &:hover {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 5px;
     }
   }
 
   &__resume {
-    font-size: v.$t-sm;
-    line-height: v.$interligne-large;
+    font-size: v.$t-base;
     color: v.$c-texte-secondaire;
     margin: 0;
   }
@@ -141,28 +216,198 @@
     display: flex;
     flex-wrap: wrap;
     gap: v.$e-2;
-    margin-top: auto;
-    padding-top: v.$e-3;
     list-style: none;
     padding-inline-start: 0;
+    margin: 0;
+  }
+
+  &__visuel {
+    overflow: hidden;
+    border: 1px solid v.$c-bordure-ui;
+    border-radius: v.$rayon;
+    background-color: v.$c-surface;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  // Cockpit en vedette : capture du kanban affichée à sa taille réelle
+  // (1200px) dès que la fenêtre le permet, pour que les cartes restent lisibles.
+  &--vedette {
+    gap: v.$e-8;
+  }
+
+  &__cadre {
+    --largeur-cadre: min(1202px, calc(100vw - 2rem));
+    width: var(--largeur-cadre);
+    margin-inline: calc((100% - var(--largeur-cadre)) / 2);
+  }
+
+  // Kasa : image à gauche, texte à droite
+  @include m.apartir(v.$bp-tablette) {
+    &--image-texte {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      gap: v.$e-8;
+
+      .projet-ligne__visuel {
+        order: -1;
+      }
+    }
   }
 }
 
-// ── Grille des cartes projet ──────────────────────────
-.grille-projets {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: v.$e-6;
-  margin-top: v.$e-8;
-  list-style: none;
-  padding-inline-start: 0;
+// Le contour de focus entoure tout le projet quand le lien est atteint au clavier
+@supports selector(:has(*)) {
+  .projet-ligne {
+    border-radius: v.$rayon;
 
-  > li {
-    display: flex;
+    &__lien:focus-visible {
+      outline: none;
+    }
+
+    &:has(.projet-ligne__lien:focus-visible) {
+      outline: 2px solid v.$c-focus;
+      outline-offset: 12px;
+    }
+
+    // La bande est découpée par clip-path : contour dessiné à l'intérieur
+    &.bande:has(.projet-ligne__lien:focus-visible) {
+      outline-offset: -8px;
+    }
+  }
+}
+
+// ── Bande de chiffres (Nina Carducci) ─────────────────
+// Fond cobalt sur toute la largeur de la fenêtre. Les jetons sont
+// redéfinis localement : étiquettes, liens et focus suivent seuls.
+// Limité à l'écran : à l'impression, on garde les couleurs de la page.
+.bande {
+  gap: v.$e-12;
+  padding-block: v.$e-12;
+
+  @include m.apartir(v.$bp-tablette) {
+    padding-block: v.$e-16;
   }
 
-  .carte {
-    width: 100%;
+  @media screen {
+    --c-texte: var(--c-bande-texte);
+    --c-texte-secondaire: var(--c-bande-secondaire);
+    --c-surface: transparent;
+    --c-bordure: var(--c-bande-bordure);
+    --c-focus: var(--c-bande-texte);
+
+    color: var(--c-texte);
+    background-color: var(--c-bande);
+    box-shadow: 0 0 0 100vmax var(--c-bande);
+    clip-path: inset(0 -100vmax);
+  }
+}
+
+.chiffres {
+  display: grid;
+  gap: v.$e-12;
+  width: 100%;
+
+  &__scores {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: v.$e-8 v.$e-6;
+    margin: 0;
+
+    @include m.apartir(v.$bp-desktop) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  &__faits {
+    display: grid;
+    gap: v.$e-6 v.$e-8;
+    margin: 0;
+    padding-top: v.$e-8;
+    border-top: 1px solid v.$c-bordure;
+    list-style: none;
+    padding-inline-start: 0;
+
+    @include m.apartir(v.$bp-tablette) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include m.apartir(v.$bp-desktop) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+}
+
+// Score Lighthouse : l'avant en petit, l'après en très grand, l'écart en texte.
+// L'évolution se lit sans la couleur (taille, flèche, « +31 »).
+.score {
+  display: flex;
+  flex-direction: column;
+  gap: v.$e-2;
+  padding-top: v.$e-3;
+  border-top: 2px solid v.$c-texte;
+
+  &__libelle {
+    font-size: v.$t-sm;
+    font-weight: v.$graisse-moyenne;
+    color: v.$c-texte-secondaire;
+  }
+
+  &__valeurs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: v.$e-1 v.$e-3;
+    margin: 0;
+  }
+
+  &__avant {
+    flex-basis: 100%;
+    font-family: v.$police-titre;
+    font-size: v.$t-xl;
+    font-weight: v.$graisse-moyenne;
+    line-height: 1.1;
+    color: v.$c-texte-secondaire;
+  }
+
+  &__apres {
+    font-family: v.$police-titre;
+    font-size: clamp(3rem, 2rem + 4.4vw, 6rem);
+    font-weight: v.$graisse-forte;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  &__ecart {
+    padding: 2px v.$e-2;
+    border: 1px solid v.$c-bordure;
+    border-radius: v.$rayon;
+    font-size: v.$t-sm;
+    font-weight: v.$graisse-forte;
+    white-space: nowrap;
+  }
+}
+
+.fait {
+  display: flex;
+  flex-direction: column;
+  gap: v.$e-1;
+
+  &__nombre {
+    font-family: v.$police-titre;
+    font-size: clamp(2.5rem, 1.9rem + 2.6vw, 3.75rem);
+    font-weight: v.$graisse-forte;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+  }
+
+  &__libelle {
+    font-size: v.$t-sm;
+    color: v.$c-texte-secondaire;
   }
 }
 
@@ -170,7 +415,7 @@
 .etiquette {
   display: inline-block;
   padding: v.$e-1 v.$e-3;
-  background-color: v.$c-fond;
+  background-color: v.$c-surface;
   border: 1px solid v.$c-bordure;
   border-radius: v.$rayon-sm;
   font-size: v.$t-xs;
@@ -182,9 +427,17 @@
 // ── Compétences ───────────────────────────────────────
 .competences {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: v.$e-8;
-  margin-top: v.$e-8;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: v.$e-12 v.$e-8;
+
+  @include m.apartir(v.$bp-desktop) {
+    grid-template-columns: 1.4fr 1fr 1fr;
+  }
+
+  &__groupe {
+    padding-top: v.$e-4;
+    border-top: 2px solid v.$c-texte;
+  }
 
   &__groupe h3 {
     font-size: v.$t-lg;
@@ -207,6 +460,18 @@
   }
 }
 
+// ── Parcours et contact côte à côte ───────────────────
+.duo {
+  display: grid;
+  gap: v.$e-12;
+
+  @include m.apartir(v.$bp-desktop) {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: v.$e-16;
+    align-items: start;
+  }
+}
+
 // ── Prose ─────────────────────────────────────────────
 .prose {
   margin-top: v.$e-8;
@@ -219,20 +484,57 @@
     font-size: v.$t-xl;
     margin: v.$e-12 0 v.$e-4;
   }
+}
 
-  &__chapo {
-    font-size: v.$t-lg;
-    color: v.$c-texte-secondaire;
+// ── Mouvement : amélioration progressive ──────────────
+// État par défaut = tout est visible. Pour les apparitions, l'état masqué
+// n'existe que si JavaScript a posé .revele-actif sur <html> (après avoir
+// créé l'IntersectionObserver, voir Accueil.jsx), sur écran, et sans
+// reduced-motion. Un élément est révélé dès son premier pixel visible, puis
+// atteint toujours l'opacité 1 : jamais de contenu à moitié transparent au repos.
+
+// Le hero n'anime que la position, jamais l'opacité : tout reste
+// visible dès le premier rendu (pas de retard sur le LCP).
+@keyframes monte {
+  from {
+    transform: translateY(1rem);
+  }
+}
+
+// La capture du hero se redresse vers son inclinaison finale
+@keyframes incline {
+  from {
+    transform: rotateY(-26deg) rotateX(9deg) rotateZ(-2deg) translateX(2rem);
+  }
+}
+
+// `screen` exclut l'impression et l'export PDF : tout y est visible
+// sans avoir fait défiler la page.
+@media screen and (prefers-reduced-motion: no-preference) {
+  .hero__texte {
+    animation: monte 700ms v.$ease-sortie both;
   }
 
-  &__exergue {
-    margin: v.$e-12 0;
-    padding-left: v.$e-6;
-    border-left: 3px solid v.$c-accent;
-    font-family: v.$police-titre;
-    font-size: v.$t-lg;
-    font-weight: v.$graisse-moyenne;
-    line-height: v.$interligne-serre;
+  .hero__visuel .cadre {
+    animation: incline 1100ms v.$ease-sortie both;
+  }
+
+  .projet-ligne__visuel img {
+    transition: transform 500ms v.$ease-sortie;
+  }
+
+  .projet-ligne:hover .projet-ligne__visuel img {
+    transform: scale(1.03);
+  }
+
+  .revele-actif .revele {
+    transition: opacity 700ms v.$ease-sortie, transform 700ms v.$ease-sortie;
+    transition-delay: calc(var(--rang, 0) * 90ms);
+
+    &:not(.est-visible) {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
   }
 }
 
@@ -245,4 +547,3 @@
     transition-duration: 0.01ms !important;
   }
 }
-

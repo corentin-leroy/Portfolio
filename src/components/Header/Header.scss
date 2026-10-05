@@ -5,7 +5,7 @@
   position: sticky;
   top: 0;
   z-index: 50;
-  background-color: rgba(253, 253, 252, 0.92);
+  background-color: color-mix(in srgb, #{v.$c-fond} 92%, transparent);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid v.$c-bordure;
 
@@ -26,6 +26,39 @@
     text-decoration: none;
     white-space: nowrap;
     @include m.focus-visible;
+  }
+
+  &__droite {
+    display: flex;
+    align-items: center;
+    gap: v.$e-4;
+  }
+
+  // Bouton de bascule clair / sombre : carré de 44px (cible tactile),
+  // contour à 3:1 pour qu'il se distingue des liens de navigation
+  &__theme {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background-color: transparent;
+    border: 1px solid v.$c-bordure-ui;
+    border-radius: v.$rayon-sm;
+    color: v.$c-texte;
+    cursor: pointer;
+    transition: background-color v.$transition;
+    @include m.focus-visible;
+
+    &:hover {
+      background-color: v.$c-surface;
+    }
+  }
+
+  &__icone {
+    display: inline-flex;
   }
 
   &__liens {
@@ -61,18 +94,43 @@
   }
 }
 
+// L'icône pivote en entrant : confirme visuellement la bascule
+@keyframes entete-icone {
+  from {
+    transform: rotate(-90deg) scale(0.6);
+    opacity: 0;
+  }
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  .entete__icone {
+    animation: entete-icone 300ms v.$ease-sortie;
+  }
+}
+
 @include m.jusqua(v.$bp-mobile) {
   .entete {
     &__interieur {
-      gap: v.$e-3;
+      gap: v.$e-2;
     }
 
     &__marque {
-      font-size: v.$t-base;
+      font-size: 1rem;
+    }
+
+    &__droite {
+      gap: v.$e-1;
+    }
+
+    // Sur 360px, titre, deux liens et bouton doivent tenir sur une ligne
+    &__liens {
+      flex-wrap: nowrap;
+      gap: 0;
     }
 
     &__liens a {
-      padding-inline: v.$e-2;
+      padding-inline: 6px;
+      white-space: nowrap;
     }
   }
 }

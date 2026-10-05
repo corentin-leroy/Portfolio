@@ -20,13 +20,13 @@
     textarea {
       padding: v.$e-3;
       background-color: v.$c-fond;
-      border: 1px solid v.$c-bordure;
+      border: 1px solid v.$c-bordure-ui;
       border-radius: v.$rayon-sm;
       font-size: v.$t-base;
       @include m.focus-visible;
 
       &[aria-invalid='true'] {
-        border-color: #A3282C;
+        border-color: v.$c-erreur;
         border-width: 2px;
       }
     }
@@ -37,7 +37,7 @@
   }
 
   &__erreur {
-    color: #A3282C;
+    color: v.$c-erreur;
     font-size: v.$t-sm;
     font-weight: v.$graisse-moyenne;
   }

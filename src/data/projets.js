@@ -11,9 +11,9 @@ export const projets = [
       'https://chromewebstore.google.com/detail/cockpit/cabhkfjohddpeigkoijhlidndfkgbpno',
     image: '/images/cockpit.webp',
     imageAlt:
-      'Tableau kanban de Cockpit : colonnes Repérée, Postulée, Relancée, Entretien et Refusée, chacune contenant des cartes de candidature avec intitulé du poste, entreprise et lieu.',
+      'Tableau kanban de Cockpit en thème sombre, intitulé Mes candidatures : colonnes Repérée, Postulée, Relancée, Entretien et Acceptée, chacune contenant des cartes de candidature avec intitulé du poste, entreprise, lieu et ancienneté.',
     imageLargeur: 1200,
-    imageHauteur: 606,
+    imageHauteur: 588,
       contexte:
       "Pendant ma recherche d'alternance, je suivais mes candidatures dans un tableur qui devenait vite illisible et que je ne pouvais pas mettre à jour depuis une offre ouverte dans le navigateur.",
     objectifs:
@@ -42,6 +42,21 @@ export const projets = [
       'Comparatif des scores Lighthouse avant et après optimisation : performance de 65 à 96, accessibilité de 68 à 100, bonnes pratiques stables à 100, SEO de 70 à 100. Poids des images réduit de 30,9 Mo à 848,9 Ko. WAVE sans erreur. Trois bugs fonctionnels corrigés.',
     imageLargeur: 1200,
     imageHauteur: 502,
+    // Résultats repris de l'image comparative, affichés en HTML sur l'accueil
+    chiffres: {
+      scores: [
+        { libelle: 'Performance', avant: 65, apres: 96, ecart: '+31' },
+        { libelle: 'Accessibilité', avant: 68, apres: 100, ecart: '+32' },
+        { libelle: 'Bonnes pratiques', avant: 100, apres: 100, ecart: '=' },
+        { libelle: 'SEO', avant: 70, apres: 100, ecart: '+30' },
+      ],
+      faits: [
+        { nombre: '−94 %', libelle: 'Poids des images', avant: '30,9 Mo', apres: '848,9 Ko' },
+        { nombre: '0', libelle: 'erreur WAVE' },
+        { nombre: '2', libelle: 'éléments Google Rich Results valides' },
+        { nombre: '3', libelle: 'bugs fonctionnels résolus' },
+      ],
+    },
     contexte:
       "Nina Carducci est une photographe professionnelle bordelaise dont le site en ligne était lent, mal référencé et partiellement inaccessible ; la mission consistait à l'optimiser sans en refaire le design.",
     objectifs:
