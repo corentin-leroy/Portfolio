@@ -5,7 +5,7 @@ export const projets = [
     resume:
       "Application web de suivi de candidatures, avec une extension Chrome publiée sur le Chrome Web Store qui capture une offre en un clic depuis n'importe quel site d'emploi.",
     stack: ['React', 'FastAPI', 'PostgreSQL', 'SQLAlchemy', 'Chrome MV3', 'Railway'],
-    urlDemo: 'https://cockpit-front-production.up.railway.app/',
+    urlDemo: 'https://cockpitemploi.fr',
     urlRepo: 'https://github.com/corentin-leroy/Cockpit',
     urlExtension:
       'https://chromewebstore.google.com/detail/cockpit/cabhkfjohddpeigkoijhlidndfkgbpno',
