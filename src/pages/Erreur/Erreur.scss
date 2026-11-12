@@ -1,0 +1,39 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+// Même rythme que l'en-tête des autres pages : titre, chapô, puis action.
+// Le reset global retire les marges des titres et paragraphes, d'où la grille.
+.erreur {
+  display: grid;
+  justify-items: start;
+  gap: v.$e-4;
+
+  // Surtitre collé au titre, plus proche de lui que du chapô
+  &__entete {
+    display: grid;
+    gap: v.$e-2;
+  }
+
+  &__code {
+    font-family: v.$police-titre;
+    font-size: v.$t-sm;
+    font-weight: v.$graisse-forte;
+    color: v.$c-accent;
+  }
+
+  &__chapo {
+    font-size: v.$t-lg;
+    color: v.$c-texte-secondaire;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: v.$e-4;
+    margin-top: v.$e-6;
+
+    @include m.apartir(v.$bp-tablette) {
+      margin-top: v.$e-8;
+    }
+  }
+}
