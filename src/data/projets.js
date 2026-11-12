@@ -23,9 +23,7 @@ export const projets = [
     competences:
       "J'ai traité des problèmes que la formation n'aborde pas : la chaîne de propriété des ressources entre utilisateurs, l'expiration des jetons de session, la suppression de compte en cascade au niveau du schéma, et une décision de sécurité que je peux défendre — refuser une URL d'API configurable dans l'extension, parce qu'un champ modifiable devient un canal d'exfiltration du jeton d'authentification.",
     resultats:
-      "Application en production avec 36 tests pytest couvrant l'authentification et les règles métier, quatre scénarios d'attaque validés manuellement (énumération de comptes, rejeu de jeton, confusion entre réinitialisation et vérification, contournement des plafonds), design system en tokens CSS conforme WCAG AA et lisible en vision daltonienne. L'extension est publiée sur le Chrome Web Store.",
-    perspectives:
-      "Publication de l'extension sur le Chrome Web Store, et suppression de la duplication des tokens CSS dans la popup, aujourd'hui synchronisée à la main.",
+      "Application en production avec 454 tests pytest, 96 % de couverture du back-end, quatre scénarios d'attaque validés manuellement (énumération de comptes, rejeu de jeton, confusion entre réinitialisation et vérification, contournement des plafonds), design system en tokens CSS conforme WCAG AA et lisible en vision daltonienne. L'extension est publiée sur le Chrome Web Store.",
   },
   {
     slug: 'nina-carducci',
@@ -67,8 +65,6 @@ export const projets = [
       "J'ai appris à diagnostiquer dans du code tiers plutôt qu'à construire du neuf : trois bugs corrigés, dont une erreur d'index dans la navigation de la galerie modale qui renvoyait toujours la même image. Sur l'accessibilité, la correction la plus instructive a porté sur le contraste des filtres, où j'ai remplacé la couleur d'origine par un ton plus sombre pour franchir le ratio de 4,5:1 exigé, et sur les libellés du carrousel, où j'ai substitué des attributs aria-label à des éléments masqués visuellement.",
     resultats:
       "Performance de 65 à 96, accessibilité de 68 à 100, SEO de 70 à 100, WAVE sans aucune erreur avec un score AIM de 10 sur 10. Le poids des images est passé de 30,9 Mo à 848,9 Ko, soit une réduction de 94 %, par conversion en WebP et redimensionnement adapté à chaque usage. Le balisage LocalBusiness est validé par l'outil de test des résultats enrichis de Google.",
-    perspectives:
-      "Automatiser le pipeline de conversion d'images dans le processus de build plutôt que par script manuel, et servir des tailles multiples via srcset pour affiner le gain sur mobile.",
   },
   {
     slug: 'kasa',
@@ -93,8 +89,6 @@ export const projets = [
       "J'ai conçu un composant Collapse générique piloté par un état local et alimenté par children, réutilisé sans variante sur deux pages, avec un contenu maintenu dans le DOM et animé en CSS. J'ai également géré les cas d'erreur du routage : un identifiant de logement absent des données déclenche une redirection vers la page 404 en mode replace, ce qui évite à la fois le crash de rendu et l'empilement de l'URL fautive dans l'historique.",
     resultats:
       "Site complet et fidèle aux maquettes, carrousel à index cyclique dont la navigation disparaît automatiquement quand un logement n'a qu'une photo, aucun écran blanc possible sur URL invalide.",
-    perspectives:
-      "Rendre les contrôles interactifs accessibles au clavier avec des éléments natifs et les attributs ARIA correspondants, remplacer le plafond de hauteur fixe du Collapse par une solution qui s'adapte au contenu, et factoriser les media queries dupliquées dans un mixin.",
   },
 ]
 

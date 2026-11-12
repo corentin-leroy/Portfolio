@@ -10,7 +10,6 @@ const RUBRIQUES = [
   { cle: 'stackTechnique', titre: 'Stack technique' },
   { cle: 'competences', titre: 'Compétences développées' },
   { cle: 'resultats', titre: 'Résultats et impact' },
-  { cle: 'perspectives', titre: "Perspectives d'amélioration" },
 ]
 
 function Projet() {
